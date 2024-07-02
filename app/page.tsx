@@ -1,5 +1,6 @@
 import Container from "@/components/Container";
 import FeatureText from "@/components/FeatureText";
+import NpmPackage from "@/components/NpmPackage";
 import { Button } from "@/components/ui/button";
 import { BookOpen, SquareArrowOutUpRight } from "lucide-react";
 import Image from "next/image";
@@ -8,7 +9,7 @@ export default function Home() {
   return (
     <section className="bg-darkPurple py-10">
       <Container>
-        <div className="mb-3 sm:mb-0">
+        <div className="mb-3 sm:mb-0 max-w-fit mx-auto">
           <h1 className="text-white font-black text-2xl sm:text-4xl md:text-5xl animate-pulse text-left sm:text-center leading-[60px]">
             {" "}
             <span className="border-b-4 border-darkCyan">
@@ -22,11 +23,18 @@ export default function Home() {
               The one tool alternative for anything you want
             </p>
           </div>
-          <div className="my-10 flex flex-col gap-4 justify-center sm:flex-row sm:items-center">
-            <FeatureText text="All in one dashboard" />
-            <FeatureText text="All in one dashboard" />
-            <FeatureText text="All in one dashboard" />
-            <FeatureText text="All in one dashboard" />
+          <div className="flex justify-center">
+            <NpmPackage />
+          </div>
+          <div className="my-10 space-y-2 lg:flex lg:items-center lg:space-y-0 lg:gap-4">
+            <div className="flex items-center justify-center gap-3 lg:gap-4">
+              <FeatureText text="All in one dashboard" />
+              <FeatureText text="All in one dashboard" />
+            </div>
+            <div className="flex items-center justify-center gap-3 lg:gap-4">
+              <FeatureText text="All in one dashboard" />
+              <FeatureText text="All in one dashboard" />
+            </div>
           </div>
           <div className="flex items-center justify-start sm:justify-center gap-4">
             <Button className="font-semibold">
