@@ -8,7 +8,7 @@ export default function Home() {
     <Container>
       <h1 className="text-white font-black text-2xl sm:text-4xl animate-pulse text-left sm:text-center leading-[60px]"> <span className="border-b-4 border-darkCyan"> Tracker Storage</span> is <span className="text-darkCyan">here!</span></h1>
       <div className="my-10 flex items-center justify-center">
-        <p className="text-ultraViolet font-semibold max-w-[600px] text-left sm:text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate hic quo eius nisi tempora esse, sunt quas sed rem, facere aliquid molestiae libero veniam! Porro ex illum odio dolorem repellat facere reprehenderit eligendi magnam est reiciendis. Aut illo maiores asperiores.</p>
+        <p className="text-ultraViolet font-semibold max-w-[600px] text-left sm:text-center">The one tool alternative for anything you want</p>
       </div>
       <div className="flex items-center justify-start sm:justify-center gap-4">
         <Button className="font-semibold">Get started for free <SquareArrowOutUpRight className="ml-1 w-4 h-4"/> </Button>
