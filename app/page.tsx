@@ -12,7 +12,7 @@ export default function Home() {
         <Container>
           <div className="flex flex-col 2xl:flex-row items-center">
           <div className="mb-3 sm:mb-0 max-w-fit mx-auto">
-            <h1 className="text-white font-black text-2xl sm:text-4xl md:text-5xl animate-pulse text-left sm:text-center leading-[60px]">
+            <h1 className="text-white font-black mb-14 text-2xl sm:text-4xl md:text-5xl animate-pulse text-left sm:text-center leading-[60px]">
               {" "}
               <span className="border-b-4 border-darkCyan">
                 {" "}
@@ -20,7 +20,7 @@ export default function Home() {
               </span>{" "}
               is <span className="text-darkCyan">here!</span>
             </h1>
-            <div className="my-14 flex items-center justify-center">
+            <div className="mb-3 flex items-center justify-center">
               <p className="text-ultraViolet font-semibold max-w-[600px] text-left sm:text-center">
                 The one tool alternative for anything you want
               </p>
