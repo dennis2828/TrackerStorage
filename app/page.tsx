@@ -66,13 +66,13 @@ export default function Home() {
       </div>
       <div className="my-10">
         <Container>
-          <h2 className="font-black sm:text-center text-2xl">
+          <h2 className="font-black text-center text-2xl">
             Use{" "}
             <span className="bg-darkCyan text-white p-1 rounded-md font-black">
               Cases
             </span>
           </h2>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col lg:flex-row mt-3 items-center justify-between">
             <p className="font-semibold mt-3 max-w-[400px] text-left leading-8">
               <span className="border-b-2 border-darkCyan font-black">
                 Tracker Storage
@@ -82,9 +82,28 @@ export default function Home() {
               a growing business, we offer a powerful and intuitive platform to
               monitor, analyze, and optimize your applications effortlessly.
             </p>
-            <Image src="/arrow.svg" width={200} height={150} className="w-[200px] h-[150px]" alt="arrow-right" />
+            <Image src="/arrow.svg" width={200} height={150} className="w-[200px] h-[150px] rotate-90 lg:rotate-0" alt="arrow-right" />
             <div>
-              content
+              <p className="font-semibold mt-3 max-w-[400px] text-left leading-8">
+              You can use Tracker Storage in countless scenarios to clearly visualize data <span className="font-black">without storing it in your database</span>, from data chunks to errors and handlers.
+              </p>
+              <div className="flex flex-wrap gap-3 mt-3">
+                <div className="bg-ultraViolet p-2 rounded-md w-fit">
+                  <p className="font-semibold text-white">errors</p>
+                </div>
+                <div className="bg-ultraViolet p-2 rounded-md w-fit">
+                  <p className="font-semibold text-white">chunks of data</p>
+                </div>
+                <div className="bg-ultraViolet p-2 rounded-md w-fit">
+                  <p className="font-semibold text-white">clicks</p>
+                </div>
+                <div className="bg-ultraViolet p-2 rounded-md w-fit">
+                  <p className="font-semibold text-white">visitors</p>
+                </div>
+                <div className="bg-ultraViolet p-2 rounded-md w-fit">
+                  <p className="font-semibold text-white">events</p>
+                </div>
+              </div>
             </div>
           </div>
         </Container>
