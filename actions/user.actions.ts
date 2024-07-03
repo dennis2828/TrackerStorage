@@ -3,23 +3,25 @@
 import { db } from "@/lib/db";
 import { hashPassword } from "@/lib/utils";
 import { CreateAccountSchema, CreateAccountType } from "@/validators";
-import { PrismaClientInitializationError, PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
-export async function createAccount(data: CreateAccountType) {
-    try{
-        console.log(data);
-        
-        const {success} = CreateAccountSchema.safeParse(data);
+export interface CreateAccountResponse {
+    ok: boolean;
+    message?: string; // to handle error messages
+}
 
-        if(!success) throw new Error("Payload was deprecated.");
+export async function createAccount(data: CreateAccountType): Promise<CreateAccountResponse> {
+    try {
+        const { success } = CreateAccountSchema.safeParse(data);
+
+        if (!success) throw new Error("Payload was deprecated. Please try again later !");
         
         const hashedPassword = await hashPassword(data.password);
-        console.log(hashedPassword);
         
-        if(!hashedPassword) throw new Error("Something went wrong. Please try again later !");
+        if (!hashedPassword) throw new Error("Cannot encrypt your password. Please try again later !");
         
         await db.user.create({
-            data:{
+            data: {
                 name: data.username,
                 email: data.email,
                 isOAuth: false,
@@ -27,13 +29,19 @@ export async function createAccount(data: CreateAccountType) {
             },
         });
 
-        return {ok:true};
-    }catch(err){
-        if(err instanceof PrismaClientKnownRequestError){
-            console.log(err.code);
+        return { ok: true, message: "Account was successfully created!" };
+
+    } catch (err) {
+        
+        if (err instanceof PrismaClientKnownRequestError) {
             
+            //@ts-ignore
+            if (err.code === "P2002" && err.meta?.target && err.meta?.target[0]==="email") {
+                
+                return { ok: false, message: "This email is already in use." };
+            }
         }
         
-        return {ok: false, msg: (err as Error).message};
+        return { ok: false, message: err instanceof Error ? err.message : "Something went wrong. Please try again later !" };
     }
 }

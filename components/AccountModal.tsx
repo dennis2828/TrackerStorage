@@ -22,9 +22,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { useMutation } from "@tanstack/react-query";
 import { createAccount } from "@/actions/user.actions";
+import toast from "react-hot-toast";
+import { CreateAccountResponse } from "@/actions/user.actions";
 
 const AccountModal = () => {
-
   const form = useForm<CreateAccountType>({
     resolver: zodResolver(CreateAccountSchema),
     defaultValues: {
@@ -34,11 +35,30 @@ const AccountModal = () => {
     },
   });
 
-  const {mutate: registerAccount, isPending} = useMutation({
-    mutationFn: async (values: CreateAccountType) =>{
-      const res = await createAccount(values);
-    }
-  })
+  const { mutate: registerAccount, isPending } = useMutation<
+    CreateAccountResponse,
+    Error,
+    CreateAccountType
+  >({
+    mutationFn: async (values: CreateAccountType) => {
+      return await createAccount(values);
+    },
+    onSuccess: (data) => {
+      if (data.ok) {
+        toast.success(data.message || "Account was successfully created!");
+        form.reset();
+      } else {
+        toast.error(
+          data.message || "Something went wrong. Please try again later!"
+        );
+      }
+    },
+    onError: (error) => {
+      toast.error(
+        error.message || "Something went wrong. Please try again later!"
+      );
+    },
+  });
 
   return (
     <Dialog>
@@ -92,7 +112,9 @@ const AccountModal = () => {
                 </FormItem>
               )}
             />
-            <Button isLoading={isPending} type="submit" className="w-full">Submit</Button>
+            <Button isLoading={isPending} type="submit" className="w-full">
+              Submit
+            </Button>
           </form>
         </Form>
       </DialogContent>
