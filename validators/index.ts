@@ -8,3 +8,9 @@ export const CreateAccountSchema = z.object({
     password: z.string().min(5, {message:"Password must be at least 5 characters."}),
 });
 export type CreateAccountType = z.infer<typeof CreateAccountSchema>;
+
+export const SignInSchema = z.object({
+  signin_email: z.string().email({message:"Invalid email"}),
+  signin_password: z.string().min(5, {message:"Password must be at least 5 characters."}),
+});
+export type SignInType = z.infer<typeof SignInSchema>;

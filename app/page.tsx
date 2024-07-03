@@ -6,10 +6,26 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, SquareArrowOutUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { auth } from "../auth"
+import { signOut } from "../auth";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth()
+  console.log(session);
+  
   return (
     <section>
+      {session && 
+      <form
+      action={async () => {
+        "use server"
+        await signOut()
+      }}
+    >
+      <button type="submit">Sign Out</button>
+    </form>
+
+      }
       <div className="bg-darkPurple py-10 sm:py-16">
         <Container>
           <div className="flex justify-end gap-3">
