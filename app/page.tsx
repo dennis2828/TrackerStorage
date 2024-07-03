@@ -59,9 +59,7 @@ export default function Home() {
             alt="hero-image"
           />
           </div>
-          
         </Container>
-
       </div>
       <div className="my-10">
         <Container>
@@ -69,6 +67,5 @@ export default function Home() {
         </Container>
       </div>
     </section>
-
   );
 }
