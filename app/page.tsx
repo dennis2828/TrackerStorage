@@ -1,18 +1,22 @@
+import AccountModal from "@/components/AccountModal";
 import Container from "@/components/Container";
 import FeatureText from "@/components/FeatureText";
 import NpmPackage from "@/components/NpmPackage";
 import { Button } from "@/components/ui/button";
 import { BookOpen, SquareArrowOutUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <section>
       <div className="bg-darkPurple py-10 sm:py-16">
         <Container>
-          <p className="text-right font-semibold text-white cursor-pointer hover:text-gray-200">
-            Account
-          </p>
+          <div className="flex justify-end gap-3">
+            <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Home</Link>
+            <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Docs</Link>
+            <AccountModal />
+          </div>
           <div className="flex flex-col 2xl:flex-row items-center">
             <div className="mb-3 sm:mb-0 max-w-fit mx-auto">
               <h1 className="text-white font-black mb-14 text-3xl sm:text-4xl md:text-5xl animate-pulse text-center leading-[60px]">
@@ -64,8 +68,8 @@ export default function Home() {
           </div>
         </Container>
       </div>
-      <div className="my-10">
-        <Container>
+      <Container>
+      <div className="my-14">
           <h2 className="font-black text-center text-2xl">
             Use{" "}
             <span className="bg-darkCyan text-white p-1 rounded-md font-black">
@@ -85,29 +89,39 @@ export default function Home() {
             <Image src="/arrow.svg" width={200} height={150} className="w-[200px] h-[150px] rotate-90 lg:rotate-0" alt="arrow-right" />
             <div>
               <p className="font-semibold mt-3 max-w-[400px] text-left leading-8">
-              You can use Tracker Storage in countless scenarios to clearly visualize data <span className="font-black">without storing it in your database</span>, from data chunks to errors and handlers.
+              You can use Tracker Storage in countless scenarios to clearly store and visualize data <span className="font-black">without storing it in your database</span>, from data chunks to errors and handlers.
               </p>
               <div className="flex flex-wrap gap-3 mt-3">
-                <div className="bg-ultraViolet p-2 rounded-md w-fit">
+                <div className="bg-ultraViolet p-2 rounded-md w-fit cursor-default hover:bg-ultraViolet/90 duration-75">
                   <p className="font-semibold text-white">errors</p>
                 </div>
-                <div className="bg-ultraViolet p-2 rounded-md w-fit">
+                <div className="bg-ultraViolet p-2 rounded-md w-fit cursor-default hover:bg-ultraViolet/90 duration-75">
                   <p className="font-semibold text-white">chunks of data</p>
                 </div>
-                <div className="bg-ultraViolet p-2 rounded-md w-fit">
+                <div className="bg-ultraViolet p-2 rounded-md w-fit cursor-default hover:bg-ultraViolet/90 duration-75">
                   <p className="font-semibold text-white">clicks</p>
                 </div>
-                <div className="bg-ultraViolet p-2 rounded-md w-fit">
+                <div className="bg-ultraViolet p-2 rounded-md w-fit cursor-default hover:bg-ultraViolet/90 duration-75">
                   <p className="font-semibold text-white">visitors</p>
                 </div>
-                <div className="bg-ultraViolet p-2 rounded-md w-fit">
+                <div className="bg-ultraViolet p-2 rounded-md w-fit cursor-default hover:bg-ultraViolet/90 duration-75">
                   <p className="font-semibold text-white">events</p>
                 </div>
               </div>
             </div>
           </div>
-        </Container>
       </div>
+      <footer className="flex flex-col gap-4 sm:flex-row items-center justify-between py-3 border-t-2 border-ultraViolet/90">
+        <Link href="/" className="font-bold text-2xl text-ultraViolet hover:text-black duration-75">Tracker Storage</Link>
+        <div className="flex items-center gap-3">
+          <Link href="/" className="font-semibold text-ultraViolet hover:text-black duration-75">home</Link>
+          <Link href="/dashboard" className="font-semibold text-ultraViolet hover:text-black duration-75">dashboard</Link>
+          <Link href="/account" className="font-semibold text-ultraViolet hover:text-black duration-75">account</Link>
+          <Link href="/docs" className="font-semibold text-ultraViolet hover:text-black duration-75">documentation</Link>
+        </div>
+        <p className="font-semibold text-ultraViolet">© All rights reserved.</p>
+      </footer>
+      </Container>
     </section>
   );
 }
