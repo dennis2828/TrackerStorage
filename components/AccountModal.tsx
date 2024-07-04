@@ -25,11 +25,16 @@ import { createAccount } from "@/actions/user.actions";
 import toast from "react-hot-toast";
 import { CreateAccountResponse } from "@/actions/user.actions";
 import { signIn } from "next-auth/react"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const AccountModal = () => {
 
+  const router = useRouter();
+
   const [signUpForm, setSignUpForm] = useState<boolean>(false);
+  const [signInErrorMessage, setSignInMessage] = useState<string>("");
+  const [signInLoading, setSignInLoading] = useState<boolean>(false);
   
   //sign-up
 
@@ -76,6 +81,10 @@ const AccountModal = () => {
     },
   });
 
+  useEffect(()=>{
+    if(signInErrorMessage && signInErrorMessage.trim()!=="") setTimeout(()=>setSignInMessage(""), 2000);
+  }, [signInErrorMessage]);
+
   return (
     <>
     {
@@ -104,9 +113,13 @@ const AccountModal = () => {
           <Form {...signInform}>
             {/* @ts-ignore */}
             <form onSubmit={signInform.handleSubmit(async ()=>{
-              const data = await signIn("credentials", {...signInform.getValues(), redirect:false});
+              setSignInLoading(true);
+              const data = await signIn("credentials", {...signInform.getValues(), redirect: false});
+              setSignInLoading(false);
               console.log(data);
-              
+              if(data?.error && data.error.trim()!=="")
+                setSignInMessage("Email or password is incorrect!");
+              else window.location.reload();
             })} className="space-y-8">
               <FormField
                 control={signInform.control}
@@ -134,9 +147,12 @@ const AccountModal = () => {
                   </FormItem>
                 )}
               />
-              <Button isLoading={isPending} type="submit" className="w-full">
+              <Button isLoading={signInLoading} type="submit" className="w-full">
                 Sign In
               </Button>
+              {signInErrorMessage && signInErrorMessage.trim()!=="" &&
+              <p className="text-sm font-semibold text-red-500">{signInErrorMessage}</p>
+              }
               <p onClick={()=>setSignUpForm(true)} className="text-sm w-fit font-semibold relative after:absolute after:content-[''] after:left-[50%] after:right-[50%] after:-translate-x-1/2 after:-bottom-1 after:w-0 after:duration-100 after:hover:w-full after:h-[1px] after:bg-darkCyan cursor-pointer">Don&apos;t have an account ?</p>
             </form>
           </Form>

@@ -22,7 +22,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Credentials({
       async authorize(credentials){
         
-        try{
           console.log(credentials);
         
           const {success, data} = SignInSchema.safeParse(credentials);
@@ -43,21 +42,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
               const passwordsMatch = await bcrypt.compare(signin_password, user.password!);
               if(passwordsMatch) return user;
 
-              return Promise.reject(new Error(" CUISTOMER MESSAGE "));            // throw new CustomSignInError("Password doesn't match.");
+              throw new Error("Passwords doesn't match.")
             }else {
-              return Promise.reject(new Error(" CUISTOMER MESSAGE "));            // throw new CustomSignInError("Password doesn't match.");
+              throw new Error(`Cannot find any user with email: ${user!.email} `)
             }
   
           }
+          throw new Error("Payload was deprecated.")
 
         }
-        catch(err){
-          return Promise.reject(new Error(" CUISTOMER MESSAGE "));            // throw new CustomSignInError("Password doesn't match.");
-        }
-        
-}})
+      })
   ],
-  trustHost: true,
   pages:{
     signIn: "/",
     error: "/",
