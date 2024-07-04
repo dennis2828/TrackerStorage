@@ -27,6 +27,7 @@ import { CreateAccountResponse } from "@/actions/user.actions";
 import { signIn } from "next-auth/react"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import LoginProviders from "./LoginProviders";
 
 const AccountModal = () => {
 
@@ -150,6 +151,7 @@ const AccountModal = () => {
               <Button isLoading={signInLoading} type="submit" className="w-full">
                 Sign In
               </Button>
+              <LoginProviders />
               {signInErrorMessage && signInErrorMessage.trim()!=="" &&
               <p className="text-sm font-semibold text-red-500">{signInErrorMessage}</p>
               }
