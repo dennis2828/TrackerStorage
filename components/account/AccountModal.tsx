@@ -27,6 +27,7 @@ import { CreateAccountResponse } from "@/actions/user.actions";
 import { signIn } from "next-auth/react"
 import { useEffect, useState } from "react";
 import LoginProviders from "../LoginProviders";
+import CreateAccount from "./CreateAccount";
 
 const AccountModal = () => {
 
@@ -34,41 +35,6 @@ const AccountModal = () => {
   const [signInErrorMessage, setSignInErrorMessage] = useState<string>("");
   const [signInLoading, setSignInLoading] = useState<boolean>(false);
   
-  //sign-up
-  const createAccountform = useForm<CreateAccountType>({
-    resolver: zodResolver(CreateAccountSchema),
-    defaultValues: {
-      username: "",
-      email: "",
-      password: "",
-    },
-  });
-
-  const { mutate: registerAccount, isPending } = useMutation<
-    CreateAccountResponse,
-    Error,
-    CreateAccountType
-  >({
-    mutationFn: async (values: CreateAccountType) => {
-      return await createAccount(values);
-    },
-    onSuccess: (data) => {
-      if (data.ok) {
-        toast.success(data.message || "Account was successfully created!");
-        createAccountform.reset();
-      } else {
-        toast.error(
-          data.message || "Something went wrong. Please try again later!"
-        );
-      }
-    },
-    onError: (error) => {
-      toast.error(
-        error.message || "Something went wrong. Please try again later!"
-      );
-    },
-  });
-
   //sign-in
   const signInform = useForm<SignInType>({
     resolver: zodResolver(SignInSchema),
@@ -81,9 +47,7 @@ const AccountModal = () => {
   useEffect(()=>{
     if(signInErrorMessage && signInErrorMessage.trim()!=="") setTimeout(()=>setSignInErrorMessage(""), 2000);
 
-    return ()=>{
-      setSignInErrorMessage("");
-    }
+  
   }, [signInErrorMessage]);
 
 
@@ -92,15 +56,15 @@ const AccountModal = () => {
     {
       signUpForm ? (
         <Dialog>
-        <DialogTrigger className="text-white font-semibold hover:text-gray-300 duration-75">
-          Account
-        </DialogTrigger>
-        <DialogContent className="bg-gray-200">
-          <DialogHeader>
-            <DialogTitle className="text-center">Create an account</DialogTitle>
-          </DialogHeader>
-          
-        </DialogContent>
+      <DialogTrigger className="text-white font-semibold hover:text-gray-300 duration-75">
+        Account
+      </DialogTrigger>
+      <DialogContent className="bg-gray-200">
+        <DialogHeader>
+          <DialogTitle className="text-center">Create an account</DialogTitle>
+        </DialogHeader>
+        <CreateAccount setSignUpForm={setSignUpForm}/>
+      </DialogContent>
       </Dialog>
       ) : (
         <Dialog>

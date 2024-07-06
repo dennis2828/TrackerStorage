@@ -13,7 +13,9 @@ const prisma = new PrismaClient()
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  session:{strategy:"jwt"},
+  session:{
+    strategy:"jwt",
+  },
   providers: [
     Credentials({
       async authorize(credentials){

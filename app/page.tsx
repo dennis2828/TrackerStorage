@@ -7,34 +7,15 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, SquareArrowOutUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { auth } from "../auth"
-import { signOut } from "../auth";
+import Navbar from "@/components/Navbar";
 
 export default async function Home({searchParams}:{searchParams:{error: string}}) {
-  const session = await auth()
-  console.log(session, searchParams);
   
   return (
     <section>
-      {session && 
-      <form
-      action={async () => {
-        "use server"
-        await signOut()
-      }}
-    >
-      <button type="submit">Sign Out</button>
-    </form>
-
-      }
       <div className="bg-darkPurple py-10 sm:py-16">
         <Container>
-          <div className="flex justify-end gap-3">
-            <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Home</Link>
-            <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Docs</Link>
-            <AccountModal />
-            <AccountErrorHandler errorCode={searchParams.error} />
-          </div>
+            <Navbar errorCode={searchParams.error} />
           <div className="flex flex-col 2xl:flex-row items-center">
             <div className="mb-3 sm:mb-0 max-w-fit mx-auto">
               <h1 className="text-white font-black mb-14 text-3xl sm:text-4xl md:text-5xl animate-pulse text-center leading-[60px]">
