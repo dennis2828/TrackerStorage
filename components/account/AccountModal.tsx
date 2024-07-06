@@ -26,19 +26,15 @@ import toast from "react-hot-toast";
 import { CreateAccountResponse } from "@/actions/user.actions";
 import { signIn } from "next-auth/react"
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import LoginProviders from "./LoginProviders";
+import LoginProviders from "../LoginProviders";
 
 const AccountModal = () => {
 
-  const router = useRouter();
-
   const [signUpForm, setSignUpForm] = useState<boolean>(false);
-  const [signInErrorMessage, setSignInMessage] = useState<string>("");
+  const [signInErrorMessage, setSignInErrorMessage] = useState<string>("");
   const [signInLoading, setSignInLoading] = useState<boolean>(false);
   
   //sign-up
-
   const createAccountform = useForm<CreateAccountType>({
     resolver: zodResolver(CreateAccountSchema),
     defaultValues: {
@@ -83,8 +79,13 @@ const AccountModal = () => {
   });
 
   useEffect(()=>{
-    if(signInErrorMessage && signInErrorMessage.trim()!=="") setTimeout(()=>setSignInMessage(""), 2000);
+    if(signInErrorMessage && signInErrorMessage.trim()!=="") setTimeout(()=>setSignInErrorMessage(""), 2000);
+
+    return ()=>{
+      setSignInErrorMessage("");
+    }
   }, [signInErrorMessage]);
+
 
   return (
     <>
@@ -119,7 +120,7 @@ const AccountModal = () => {
               setSignInLoading(false);
               console.log(data);
               if(data?.error && data.error.trim()!=="")
-                setSignInMessage("Email or password is incorrect!");
+                setSignInErrorMessage("Email or password is incorrect!");
               else window.location.reload();
             })} className="space-y-8">
               <FormField

@@ -1,4 +1,5 @@
-import AccountModal from "@/components/AccountModal";
+import AccountModal from "@/components/account/AccountModal";
+import AccountErrorHandler from "@/components/account/AccountErrorHandler";
 import Container from "@/components/Container";
 import FeatureText from "@/components/FeatureText";
 import NpmPackage from "@/components/NpmPackage";
@@ -9,9 +10,9 @@ import Link from "next/link";
 import { auth } from "../auth"
 import { signOut } from "../auth";
 
-export default async function Home() {
+export default async function Home({searchParams}:{searchParams:{error: string}}) {
   const session = await auth()
-  console.log(session);
+  console.log(session, searchParams);
   
   return (
     <section>
@@ -32,6 +33,7 @@ export default async function Home() {
             <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Home</Link>
             <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Docs</Link>
             <AccountModal />
+            <AccountErrorHandler errorCode={searchParams.error} />
           </div>
           <div className="flex flex-col 2xl:flex-row items-center">
             <div className="mb-3 sm:mb-0 max-w-fit mx-auto">
