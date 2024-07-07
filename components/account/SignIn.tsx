@@ -47,6 +47,7 @@ const SignIn = ({ setSignUpForm }: SignInProps) => {
           const data = await signIn("credentials", {
             ...signInform.getValues(),
             redirect: false,
+            callbackUrl:"/dashboard"
           });
           setSignInLoading(false);
           console.log(data);

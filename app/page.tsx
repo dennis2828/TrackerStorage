@@ -1,15 +1,14 @@
-import AccountModal from "@/components/account/AccountModal";
-import AccountErrorHandler from "@/components/account/AccountErrorHandler";
 import Container from "@/components/Container";
 import FeatureText from "@/components/FeatureText";
 import NpmPackage from "@/components/NpmPackage";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { BookOpen, SquareArrowOutUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import { cn } from "@/lib/utils";
 
-export default async function Home({searchParams}:{searchParams:{error: string}}) {
+export default function Home({searchParams}:{searchParams:{error: string}}) {
   
   return (
     <section>
@@ -45,14 +44,14 @@ export default async function Home({searchParams}:{searchParams:{error: string}}
                 </div>
               </div>
               <div className="flex items-center justify-center gap-4">
-                <Button className="font-semibold">
+                <Link href={"/dashboard"} className={cn("font-semibold", buttonVariants({variant:"default"}))}>
                   Get started for free{" "}
                   <SquareArrowOutUpRight className="ml-1 w-4 h-4" />{" "}
-                </Button>
-                <Button variant="outline" className="font-semibold">
+                </Link>
+                <Link href={"/docs"} className={cn("font-semibold",buttonVariants({variant:"outline"}))}>
                   {" "}
                   Docs <BookOpen className="ml-1 w-4 h-4" />{" "}
-                </Button>
+                </Link>
               </div>
             </div>
             <Image
