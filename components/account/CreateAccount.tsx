@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form"
 import { Dispatch, SetStateAction } from "react"
 
 interface CreateAccountProps {
-    setSignUpForm: Dispatch<SetStateAction<boolean>>;
+  setSignUpForm: Dispatch<SetStateAction<boolean>>;
 }
 
 const CreateAccount = ({setSignUpForm}: CreateAccountProps) => {
