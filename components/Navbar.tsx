@@ -1,7 +1,7 @@
 import Link from "next/link"
 import AccountModal from "./account/AccountModal"
 import AccountErrorHandler from "./account/AccountErrorHandler"
-import UserSession from "./UserSession"
+import UserSession from "./account/UserSession"
 
 const Navbar = ({errorCode}: {errorCode: string}) => {
   return (

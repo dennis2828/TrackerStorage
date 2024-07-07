@@ -3,7 +3,6 @@
 import { useMutation } from "@tanstack/react-query"
 import LoginProviders from "../LoginProviders"
 import { Button } from "../ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { Input } from "../ui/input"
 import { createAccount, CreateAccountResponse } from "@/actions/user.actions"
@@ -12,6 +11,7 @@ import toast from "react-hot-toast"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Dispatch, SetStateAction } from "react"
+import { signIn } from "next-auth/react"
 
 interface CreateAccountProps {
   setSignUpForm: Dispatch<SetStateAction<boolean>>;
@@ -27,10 +27,11 @@ const CreateAccount = ({setSignUpForm}: CreateAccountProps) => {
     mutationFn: async (values: CreateAccountType) => {
       return await createAccount(values);
     },
-    onSuccess: (data) => {
+    onSuccess: (data, values) => {
       if (data.ok) {
         toast.success(data.message || "Account was successfully created!");
         createAccountForm.reset();
+        signIn("credentials", {signin_email: values.email, signin_password: values.password});
       } else {
         toast.error(
           data.message || "Something went wrong. Please try again later!"
@@ -92,7 +93,7 @@ const CreateAccount = ({setSignUpForm}: CreateAccountProps) => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter a password" {...field} />
+                    <Input type="password" placeholder="Enter a password" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

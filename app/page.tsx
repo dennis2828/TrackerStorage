@@ -15,7 +15,7 @@ export default async function Home({searchParams}:{searchParams:{error: string}}
     <section>
       <div className="bg-darkPurple py-10 sm:py-16">
         <Container>
-            <Navbar errorCode={searchParams.error} />
+          <Navbar errorCode={searchParams.error} />
           <div className="flex flex-col 2xl:flex-row items-center">
             <div className="mb-3 sm:mb-0 max-w-fit mx-auto">
               <h1 className="text-white font-black mb-14 text-3xl sm:text-4xl md:text-5xl animate-pulse text-center leading-[60px]">

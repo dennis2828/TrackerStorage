@@ -19,8 +19,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     Credentials({
       async authorize(credentials){
+        console.log(credentials);
         
-          console.log(credentials);
         
           const {success, data} = SignInSchema.safeParse(credentials);
           console.log(success);
