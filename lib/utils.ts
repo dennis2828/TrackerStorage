@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import bcrypt from "bcryptjs";
+import { v4 as uuidv4 } from 'uuid';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -23,3 +24,8 @@ export async function hashPassword(password: string) {
   }
 }
 
+export function generateApiKey(): string {
+  const prefix = 'trackerstorage-';
+  const randomString = uuidv4().replace(/-/g, '').substring(0, 16); // Generate a UUID and remove dashes
+  return prefix + randomString;
+}

@@ -103,7 +103,7 @@ const CreateAccount = ({setSignUpForm}: CreateAccountProps) => {
               Submit
             </Button>
             <LoginProviders />
-            <p onClick={()=>setSignUpForm(false)} className="text-sm w-fit font-semibold relative after:absolute after:content-[''] after:left-[50%] after:right-[50%] after:-translate-x-1/2 after:-bottom-1 after:w-0 after:duration-100 after:hover:w-full after:h-[1px] after:bg-darkCyan cursor-pointer">Already have an account?</p>
+            <p onClick={()=>setSignUpForm(false)} className="text-sm w-fit font-semibold relative after:absolute after:content-[''] after:left-[50%] after:right-[50%] after:-translate-x-1/2 after:-bottom-1 after:w-0 after:duration-100 after:hover:w-full after:h-[1px] after:bg-darkCyan cursor-pointer">Already have an account ?</p>
           </form>
         </Form>
   )

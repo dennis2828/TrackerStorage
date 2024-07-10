@@ -1,7 +1,7 @@
 import Container from "@/components/Container";
 import FeatureText from "@/components/FeatureText";
 import NpmPackage from "@/components/NpmPackage";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { BookOpen, SquareArrowOutUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +9,6 @@ import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 
 export default function Home({searchParams}:{searchParams:{error: string}}) {
-  
   return (
     <section>
       <div className="bg-darkPurple py-10 sm:py-16">

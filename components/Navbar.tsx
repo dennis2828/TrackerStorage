@@ -6,16 +6,13 @@ import { auth } from "@/auth"
 
 const Navbar = async ({errorCode}: {errorCode: string}) => {
   const session = await auth();
-
-  if(!session || !session.user) return null;
-
-  const {user} = session;
+  
 
   return (
     <div className="flex items-center gap-3 justify-end mb-3">
         <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Home</Link>
         <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Docs</Link>
-        {session && user && (
+        {session && session.user && (
             <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Dashboard</Link>
         ) }
         <AccountModal />

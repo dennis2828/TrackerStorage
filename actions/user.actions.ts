@@ -1,7 +1,7 @@
 "use server"
 
 import { db } from "@/lib/db";
-import { hashPassword } from "@/lib/utils";
+import { generateApiKey, hashPassword } from "@/lib/utils";
 import { CreateAccountSchema, CreateAccountType } from "@/validators";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
@@ -26,6 +26,7 @@ export async function createAccount(data: CreateAccountType): Promise<CreateAcco
                 email: data.email,
                 isOAuth: false,
                 password: hashedPassword,
+                apiKey: generateApiKey(),
             },
         });
 
