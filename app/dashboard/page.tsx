@@ -48,10 +48,9 @@ export default async function Dashboard() {
         </section>
         <section className="mt-14">
             <Container>
-                <Chunks chunks={dbUser.chunks} />
+                <Chunks chunks={dbUser.chunks} userId={dbUser.id} />
             </Container>
         </section>
         </>
-        
     )
 }

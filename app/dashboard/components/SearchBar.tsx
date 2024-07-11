@@ -3,15 +3,25 @@
 import { Input } from "@/components/ui/input"
 import { Search, X } from "lucide-react"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
 
 const SearchBar = () => {
     const [searchValue, setSearchValue] = useState<string>("");
     const [clearTextIcon, setClearTextIcon] = useState<boolean>(false);
+    const router = useRouter();
 
     useEffect(()=>{
-        if(searchValue==="") setClearTextIcon(false);
-        else if(!clearTextIcon) setClearTextIcon(true);
-    }, [searchValue]);
+        if(searchValue===""){
+            setClearTextIcon(false);
+            router.push({ pathname: router.pathname });
+        } 
+        else if(!clearTextIcon){
+            setClearTextIcon(true);
+            router.push({ pathname: router.pathname, query: { search: searchValue } });
+        }
+
+
+    }, [searchValue, router]);
 
   return (
     <div className="bg-white flex rounded-md">
@@ -26,4 +36,4 @@ const SearchBar = () => {
   )
 }
 
-export default SearchBar
+export default SearchBar;

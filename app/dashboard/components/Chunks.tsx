@@ -1,12 +1,23 @@
+"use client";
 import { Chunk } from '@prisma/client'
 import React from 'react'
 import ChunkData from './ChunkData';
+import { useQuery } from '@tanstack/react-query';
+import { getChunks } from '@/actions/chunks.actions';
 
 interface ChunksProps {
     chunks: Chunk[];
+    userId: string;
 }
 
-const Chunks = ({chunks}: ChunksProps) => {
+const Chunks = ({chunks, userId}: ChunksProps) => {
+
+  const {data} = useQuery({
+    queryKey: ["chunks"],
+    queryFn: async ()=> await getChunks(userId),
+    initialData: chunks,
+  });
+
   return (
     <div>
         <div className='flex items-center justify-between mb-4'>
@@ -14,12 +25,12 @@ const Chunks = ({chunks}: ChunksProps) => {
           Name
         </p>
         <p className="font-bold uppercase">
-            Type
+          Type
         </p>
         <p className="font-bold uppercase">Created at</p>
 
         </div>
-        {chunks.map((chunk, idx)=>(
+        {data.map((chunk, idx)=>(
             <ChunkData key={idx} chunk={chunk} />
         ))}
     </div>
