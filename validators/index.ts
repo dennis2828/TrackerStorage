@@ -14,3 +14,13 @@ export const SignInSchema = z.object({
   signin_password: z.string().min(5, {message:"Password must be at least 5 characters."}),
 });
 export type SignInType = z.infer<typeof SignInSchema>;
+
+
+export const TrackSchema = z.object({
+  chunk: z.record(z.string(), z.any()),
+  options: z.object({
+    name: z.string(),
+    type: z.enum(["SUCCESS", "FAIL", "OTHER"]),
+  }),
+});
+export type TrackType = z.infer<typeof TrackSchema>;

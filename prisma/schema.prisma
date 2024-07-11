@@ -19,12 +19,32 @@ model User {
   sessions      Session[]
   isOAuth       Boolean       @default(true)
   password      String?
-  apiKey        String
+  apiKey        String      @unique
   // Optional for WebAuthn support
   Authenticator Authenticator[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  chunks Chunk[]
+}
+
+enum ChunkType {
+  SUCCESS
+  FAIL
+  OTHER
+}
+
+model Chunk {
+  id String @id @default(cuid())
+  name String
+  data String
+  type ChunkType @default(OTHER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  userId String
+  user User @relation(fields: [userId], references: [id])
 }
  
 model Account {
