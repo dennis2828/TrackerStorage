@@ -22,6 +22,18 @@ export default async function Dashboard() {
             chunks: true,
         },
     });
+    const successLength = dbUser?.chunks.reduce((acc,c)=>{
+        if(c.type==="SUCCESS") return acc+1;
+        return acc;
+    },0);
+    const failLength = dbUser?.chunks.reduce((acc,c)=>{
+        if(c.type==="FAIL") return acc+1;
+        return acc;
+    },0);
+    const otherLength = dbUser?.chunks.reduce((acc,c)=>{
+        if(c.type==="OTHER") return acc+1;
+        return acc;
+    },0);
 
     if(!dbUser) redirect("/");
     
@@ -34,7 +46,13 @@ export default async function Dashboard() {
                     <UserSession />
                 </div>
                 <div className="flex items-center justify-between mt-6">
-                <p className="font-black text-gray-200">TOTAL <span className="text-darkCyan">CHUNKS</span>: {dbUser.chunks.length}</p>
+                    <div className="flex flex-col gap-3 lg:flex-row">
+                    <p className="font-black text-gray-200">TOTAL <span className="text-darkCyan">CHUNKS</span>: {dbUser.chunks.length}</p>
+                <p className="font-black text-gray-200 border-b-2 border-darkCyan">SUCCESS:  {successLength || 0}</p>
+                <p className="font-black text-gray-200 border-b-2 border-darkCyan">OTHERS:  {otherLength || 0}</p>
+                <p className="font-black text-gray-200 border-b-2 border-darkCyan">FAILS:  {failLength || 0}</p>
+                    </div>
+                
                 <ApiKey apiKey={dbUser.apiKey} />
                 </div>
             </Container>
@@ -42,13 +60,13 @@ export default async function Dashboard() {
         <section className="mt-14">
             <Container>
                 <div>
-                    <SearchBar />
+                    <SearchBar initialChunks={dbUser.chunks} />
                 </div>
             </Container>
         </section>
         <section className="mt-14">
             <Container>
-                <Chunks chunks={dbUser.chunks} userId={dbUser.id} />
+                <Chunks apiKey={dbUser.apiKey} chunks={dbUser.chunks} userId={dbUser.id} />
             </Container>
         </section>
         </>

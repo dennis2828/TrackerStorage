@@ -1,6 +1,5 @@
 "use client";
 import { Chunk } from '@prisma/client'
-import React from 'react'
 import ChunkData from './ChunkData';
 import { useQuery } from '@tanstack/react-query';
 import { getChunks } from '@/actions/chunks.actions';
@@ -8,9 +7,10 @@ import { getChunks } from '@/actions/chunks.actions';
 interface ChunksProps {
     chunks: Chunk[];
     userId: string;
+    apiKey: string;
 }
-
-const Chunks = ({chunks, userId}: ChunksProps) => {
+ 
+const Chunks = ({chunks, userId, apiKey}: ChunksProps) => {
 
   const {data} = useQuery({
     queryKey: ["chunks"],
@@ -31,7 +31,7 @@ const Chunks = ({chunks, userId}: ChunksProps) => {
 
         </div>
         {data.map((chunk, idx)=>(
-            <ChunkData key={idx} chunk={chunk} />
+            <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
         ))}
     </div>
   )

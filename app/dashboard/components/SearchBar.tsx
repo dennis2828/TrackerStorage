@@ -1,10 +1,19 @@
 "use client"
 
 import { Input } from "@/components/ui/input"
+import { Chunk } from "@prisma/client"
+import { useQueryClient } from "@tanstack/react-query"
 import { Search, X } from "lucide-react"
 import { useEffect, useState } from "react"
 
-const SearchBar = () => {
+interface SearchBarProps {
+    initialChunks: Chunk[];
+}
+
+const SearchBar = ({initialChunks}: SearchBarProps) => {
+    const queryClient = useQueryClient();
+
+    
     const [searchValue, setSearchValue] = useState<string>("");
     const [clearTextIcon, setClearTextIcon] = useState<boolean>(false);
 
@@ -14,6 +23,17 @@ const SearchBar = () => {
         } 
         else if(!clearTextIcon){
             setClearTextIcon(true);
+        }
+
+        const timeout = setTimeout(()=>{
+            queryClient.setQueryData(["chunks"],()=>{
+                return initialChunks.filter(c=>c.name.includes(searchValue))
+              });
+        }, 300);
+        
+
+        return () =>{
+            clearTimeout(timeout);
         }
 
     }, [searchValue]);

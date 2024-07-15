@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { generateApiKey, hashPassword } from "@/lib/utils";
 import { CreateAccountSchema, CreateAccountType } from "@/validators";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { revalidatePath } from "next/cache";
 
 export interface CreateAccountResponse {
     ok: boolean;
@@ -45,4 +46,9 @@ export async function createAccount(data: CreateAccountType): Promise<CreateAcco
         
         return { ok: false, message: err instanceof Error ? err.message : "Something went wrong. Please try again later !" };
     }
+}
+
+
+export async function revalidate(path: string) {
+    revalidatePath(path);
 }
