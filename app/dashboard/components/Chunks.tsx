@@ -30,9 +30,26 @@ const Chunks = ({chunks, userId, apiKey}: ChunksProps) => {
         <p className="font-bold uppercase">Created at</p>
 
         </div>
-        {data.map((chunk, idx)=>(
-            <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
-        ))}
+        <div className='flex flex-col max-h-[500px] overflow-y-scroll'>
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+        </div>
     </div>
   )
 }

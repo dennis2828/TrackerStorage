@@ -27,7 +27,7 @@ const SearchBar = ({initialChunks}: SearchBarProps) => {
 
         const timeout = setTimeout(()=>{
             queryClient.setQueryData(["chunks"],()=>{
-                return initialChunks.filter(c=>c.name.includes(searchValue))
+                return initialChunks.filter(c=>c.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
               });
         }, 300);
         
@@ -39,7 +39,7 @@ const SearchBar = ({initialChunks}: SearchBarProps) => {
     }, [searchValue]);
 
   return (
-    <div className="bg-white flex rounded-md">
+    <div className="bg-white flex rounded-md w-full">
         <div className="bg-gray-400 p-2 flex items-center justify-center rounded-l-md">
             <Search className="w-4 h-4 text-white" />
         </div>
