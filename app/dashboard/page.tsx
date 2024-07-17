@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import ApiKey from "./components/ApiKey";
 import Chunks from "./components/Chunks";
 import SearchBar from "./components/SearchBar";
+import ChunkType from "./components/ChunkType";
 
 export default async function Dashboard() {
 
@@ -47,20 +48,20 @@ export default async function Dashboard() {
                 </div>
                 <div className="flex items-center justify-between mt-6">
                     <div className="flex flex-col gap-3 lg:flex-row">
-                    <p className="font-black text-gray-200">TOTAL <span className="text-darkCyan">CHUNKS</span>: {dbUser.chunks.length}</p>
-                <p className="font-black text-gray-200 border-b-2 border-darkCyan">SUCCESS:  {successLength || 0}</p>
-                <p className="font-black text-gray-200 border-b-2 border-darkCyan">OTHERS:  {otherLength || 0}</p>
-                <p className="font-black text-gray-200 border-b-2 border-darkCyan">FAILS:  {failLength || 0}</p>
+                        <p className="font-black text-gray-200">TOTAL <span className="text-darkCyan">CHUNKS</span>: {dbUser.chunks.length}</p>
+                        <p className="font-black text-gray-200 border-b-2 border-darkCyan">SUCCESS:  {successLength || 0}</p>
+                        <p className="font-black text-gray-200 border-b-2 border-darkCyan">OTHERS:  {otherLength || 0}</p>
+                        <p className="font-black text-gray-200 border-b-2 border-darkCyan">FAILS:  {failLength || 0}</p>
                     </div>
-                
                 <ApiKey apiKey={dbUser.apiKey} />
                 </div>
             </Container>
         </section> 
         <section className="mt-14">
             <Container>
-                <div>
+                <div className="flex items-center justify-between gap-4">
                     <SearchBar initialChunks={dbUser.chunks} />
+                    <ChunkType initialChunks={dbUser.chunks} />
                 </div>
             </Container>
         </section>

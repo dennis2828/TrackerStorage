@@ -3,6 +3,7 @@ import { Chunk } from '@prisma/client'
 import ChunkData from './ChunkData';
 import { useQuery } from '@tanstack/react-query';
 import { getChunks } from '@/actions/chunks.actions';
+import Link from 'next/link';
 
 interface ChunksProps {
     chunks: Chunk[];
@@ -30,9 +31,33 @@ const Chunks = ({chunks, userId, apiKey}: ChunksProps) => {
         <p className="font-bold uppercase">Created at</p>
 
         </div>
-        {data.map((chunk, idx)=>(
-            <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
-        ))}
+        {!data || data.length===0 ? (
+          <div>
+            <p className='font-semibold text-center'>No chunks registered.<Link href='/docs' className='text-darkCyan cursor-pointer hover:border-b border-darkCyan font-semibold'>Get started here</Link></p>
+          </div>
+        ): (
+          <div className='flex flex-col max-h-[500px] overflow-y-scroll overflowBar'>
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+          {data.map((chunk, idx)=>(
+              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
+          ))}
+        </div>
+        )}
+        
     </div>
   )
 }
