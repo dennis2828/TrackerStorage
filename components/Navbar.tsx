@@ -11,9 +11,9 @@ const Navbar = async ({errorCode}: {errorCode: string}) => {
   return (
     <div className="flex items-center gap-3 justify-end mb-3">
         <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Home</Link>
-        <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Docs</Link>
+        <Link href="/docs" className="font-semibold text-white hover:text-gray-300 duration-75">Docs</Link>
         {session && session.user && (
-            <Link href="/" className="font-semibold text-white hover:text-gray-300 duration-75">Dashboard</Link>
+            <Link href="/dashboard" className="font-semibold text-white hover:text-gray-300 duration-75">Dashboard</Link>
         ) }
         <AccountModal />
         <UserSession />

@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
     try{
-        console.log("gh post");
         
         const authHeader = req.headers.get("Authorization");
         if (!authHeader) {
@@ -15,16 +14,21 @@ export async function POST(req: NextRequest) {
         if (!apiKey) {
             return NextResponse.json({ ok: false, error: "No API key found in Authorization header" }, { status: 401 });
         }
-        console.log("gh key");
 
         const user = await db.user.findUnique({
             where: {
                 apiKey,
             },
+            include: {
+                chunks: true,
+            },
         });
 
         if(!user) {
             return NextResponse.json({ ok: false, error: "No user was found. API KEY was deprecated." }, { status: 401 });
+        }
+        if(user.chunks.length+1>30) {
+            return NextResponse.json({ ok: false, error: "Track limit was exceeded. Please delete some of the currently tracked records or wait for autodeletion." }, { status: 400 });
         }
 
         const jsonData = await req.json();

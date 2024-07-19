@@ -39,7 +39,7 @@ export default async function Dashboard() {
     if(!dbUser) redirect("/");
     
     return (
-        <>
+        <> 
         <section className="w-full bg-softBlue py-4">
             <Container>
                 <div className="flex items-center justify-between">
