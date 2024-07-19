@@ -40,7 +40,7 @@ export default async function Dashboard() {
     
     return (
         <> 
-        <section className="w-full bg-softBlue py-4">
+        <section className="w-full bg-darkPurple py-4">
             <Container>
                 <div className="flex items-center justify-between">
                     <h1 className="font-black text-white text-3xl">Welcome, <span className="border-b-4 border-darkCyan">{user.name}</span></h1>

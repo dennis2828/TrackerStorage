@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 export default function Docs() {
   return (
     <>
-      <section className="w-full bg-softBlue py-4">
+      <section className="w-full bg-darkPurple py-4">
         <Container>
           <h1 className="font-black text-white text-3xl w-fit mx-auto border-b-4 border-darkCyan">
             Documentation
