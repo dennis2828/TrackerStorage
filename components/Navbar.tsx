@@ -15,7 +15,9 @@ const Navbar = async ({errorCode}: {errorCode: string}) => {
         {session && session.user && (
             <Link href="/dashboard" className="font-semibold text-white hover:text-gray-300 duration-75">Dashboard</Link>
         ) }
+        {!session || !session.user && (
         <AccountModal />
+        )}
         <UserSession />
         <AccountErrorHandler errorCode={errorCode} />
     </div>

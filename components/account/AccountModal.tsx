@@ -18,7 +18,7 @@ const AccountModal = () => {
     <>
       <Dialog>
         <DialogTrigger className="text-white font-semibold hover:text-gray-300 duration-75">
-          Account
+          Login
         </DialogTrigger>
         <DialogContent className="bg-gray-200">
           <DialogHeader>

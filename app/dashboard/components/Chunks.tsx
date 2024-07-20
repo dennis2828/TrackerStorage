@@ -33,7 +33,7 @@ const Chunks = ({chunks, userId, apiKey}: ChunksProps) => {
         </div>
         {!data || data.length===0 ? (
           <div>
-            <p className='font-semibold text-center'>No chunks registered.<Link href='/docs' className='text-darkCyan cursor-pointer hover:border-b border-darkCyan font-semibold'>Get started here</Link></p>
+            <p className='font-semibold text-center'>No chunks found.<Link href='/docs' className='text-darkCyan cursor-pointer hover:border-b border-darkCyan font-semibold'>Get started here</Link></p>
           </div>
         ): (
           <div className='flex flex-col max-h-[500px] overflow-y-scroll overflowBar'>

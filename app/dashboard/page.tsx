@@ -7,6 +7,8 @@ import ApiKey from "./components/ApiKey";
 import Chunks from "./components/Chunks";
 import SearchBar from "./components/SearchBar";
 import ChunkType from "./components/ChunkType";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 export default async function Dashboard() {
 
@@ -43,7 +45,12 @@ export default async function Dashboard() {
         <section className="w-full bg-darkPurple py-4">
             <Container>
                 <div className="flex items-center justify-between">
-                    <h1 className="font-black text-white text-3xl">Welcome, <span className="border-b-4 border-darkCyan">{user.name}</span></h1>
+                    <div className="flex items-center">
+                        <Link href="/" className="cursor-pointer hover:text-gray-200">
+                            <ArrowLeft className="w-6 h-6 text-white" />
+                        </Link>
+                        <h1 className="font-black text-white text-3xl">Welcome, <span className="border-b-4 border-darkCyan">{user.name}</span></h1>
+                    </div>
                     <UserSession />
                 </div>
                 <div className="flex items-center justify-between mt-6">

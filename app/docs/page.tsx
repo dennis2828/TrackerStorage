@@ -20,7 +20,7 @@ export default function Docs() {
       <Container>
       <section className="my-14 space-y-6">
         <p className="font-semibold">
-        TrackerStorage is a powerful tool for developers to store and track various types of data or events within their applications. Whether you need to capture errors, debug information, or other critical events, TrackerStorage provides a simple and efficient way to handle and display this data on a dedicated dashboard.        </p>
+          TrackerStorage is a powerful tool for developers to store and track various types of data or events within their applications. Whether you need to capture errors, debug information, or other critical events, TrackerStorage provides a simple and efficient way to handle and display this data on a dedicated dashboard.        </p>
         <div>
           <p className="font-bold">1. Install npm package</p>
           <NpmPackage className="bg-ultraViolet" />
@@ -34,7 +34,7 @@ export default function Docs() {
           <SyntaxHighlighterPreview code={trackMethod} />
         </div>
         <div>
-          <p className="font-bold">3. Track whatever you want</p>
+          <p className="font-bold">4. Track whatever you want</p>
           <SyntaxHighlighterPreview code={codeExample} />
         </div>
       </section>
