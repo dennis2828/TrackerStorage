@@ -40,24 +40,8 @@ const Chunks = ({chunks, userId, apiKey}: ChunksProps) => {
           {data.map((chunk, idx)=>(
               <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
           ))}
-          {data.map((chunk, idx)=>(
-              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
-          ))}
-          {data.map((chunk, idx)=>(
-              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
-          ))}
-          {data.map((chunk, idx)=>(
-              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
-          ))}
-          {data.map((chunk, idx)=>(
-              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
-          ))}
-          {data.map((chunk, idx)=>(
-              <ChunkData key={idx} chunk={chunk} apiKey={apiKey} />
-          ))}
         </div>
         )}
-        
     </div>
   )
 }
