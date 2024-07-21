@@ -59,7 +59,7 @@ export function formatPrismaDateToRelativeTime(date: Date): string {
 
 export function constructMetadata({
   title = "Tracker Storage",
-  description = "TrackerStorage is a powerful tool for developers to store and track various types of data or events within their applications. Whether you need to capture errors, debug information, or other critical events, TrackerStorage provides a simple and efficient way to handle and display this data on a dedicated dashboard.",
+  description = "TrackerStorage is a lightweight powerful tool for developers to store and track various types of data or events within their applications. Whether you need to capture errors, debug information, or other critical events, TrackerStorage provides a simple and efficient way to handle and display this data on a dedicated dashboard for FREE.",
   image = "https://res.cloudinary.com/dulb5sobi/image/upload/v1721584593/je4bobjyi8h9ciwsts0g.png",
   icons = "https://res.cloudinary.com/dulb5sobi/image/upload/v1721584593/je4bobjyi8h9ciwsts0g.png",
   noIndex = false,

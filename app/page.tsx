@@ -17,7 +17,7 @@ export default function Home({searchParams}:{searchParams:{error: string}}) {
           <Navbar errorCode={searchParams.error} />
           <div className="flex flex-col 2xl:flex-row items-center">
             <div className="mb-3 sm:mb-0 max-w-fit mx-auto">
-              <h1 className="text-white font-black mb-14 text-3xl sm:text-4xl md:text-5xl animate-pulse text-center leading-[60px]">
+              <h1 className="text-white font-black mb-14 text-3xl sm:text-4xl md:text-5xl animate-pulse text-center">
                 {" "}
                 <span className="border-b-4 border-darkCyan">
                   {" "}
@@ -35,11 +35,11 @@ export default function Home({searchParams}:{searchParams:{error: string}}) {
               </div>
               <div className="my-14 space-y-3 lg:flex lg:items-center lg:space-y-0 lg:gap-3">
                 <div className="flex items-center justify-center gap-3">
-                  <FeatureText text="All in one dashboard" />
-                  <FeatureText text="All in one dashboard" />
+                  <FeatureText text="Lightweight" />
+                  <FeatureText text="Free to use" />
                 </div>
                 <div className="flex items-center justify-center gap-3">
-                  <FeatureText text="All in one dashboard" />
+                  <FeatureText text="Powerful" />
                   <FeatureText text="All in one dashboard" />
                 </div>
               </div>
