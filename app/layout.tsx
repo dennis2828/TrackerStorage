@@ -4,8 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
 import { Toaster } from "react-hot-toast";
-import Container from "@/components/Container";
-
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +25,7 @@ export default function RootLayout({
       <Providers>
           {children}
       </Providers>
+      <Analytics />
       </body>
     </html>
   );

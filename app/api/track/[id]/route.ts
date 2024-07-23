@@ -6,7 +6,6 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    console.log("gh");
     
     const authHeader = req.headers.get("Authorization");
     if (!authHeader) {
