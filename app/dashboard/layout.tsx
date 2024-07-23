@@ -7,12 +7,13 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-        {children}
+    <div className="flex flex-col justify-between h-screen">
+      <div>
+      {children}
+      </div>
         <Container>
-          <div className="mt-14"></div>
           <Footer />
         </Container>
-    </>
+    </div>
   );
 }

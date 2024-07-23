@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from 'uuid';
+import { Metadata } from "next"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -53,5 +54,44 @@ export function formatPrismaDateToRelativeTime(date: Date): string {
     return months === 1 ? '1 month ago' : `${months} months ago`;
   } else {
     return years === 1 ? '1 year ago' : `${years} years ago`;
+  }
+}
+
+export function constructMetadata({
+  title = "Tracker Storage",
+  description = "TrackerStorage is a lightweight powerful tool for developers to store and track various types of data or events within their applications. Whether you need to capture errors, debug information, or other critical events, TrackerStorage provides a simple and efficient way to handle and display this data on a dedicated dashboard for FREE.",
+  image = "https://res.cloudinary.com/dulb5sobi/image/upload/v1721584593/je4bobjyi8h9ciwsts0g.png",
+  icons = "https://res.cloudinary.com/dulb5sobi/image/upload/v1721584593/je4bobjyi8h9ciwsts0g.png",
+  noIndex = false,
+}: {
+  title?: string
+  description?: string
+  image?: string
+  icons?: string
+  noIndex?: boolean,
+  keywords?: string[],
+} = {}): Metadata {
+  return {
+    title,
+    keywords:["tracker storage","web logs","track data", "track chunks"],
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: image,
+        },
+      ]
+    },
+    icons,
+    metadataBase: new URL('https://tracker-storage.vercel.app/'),
+    themeColor: '#2B193D"',
+    ...(noIndex && {
+      robots: {
+        index: true,
+        follow: true
+      }
+    })
   }
 }
