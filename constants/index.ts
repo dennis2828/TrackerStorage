@@ -25,6 +25,6 @@ try {
     ...
 }catch(err){
     ...
-    TrackerStorage.track({page:"/dashboard", err}, {name:"Error on fetch", type:"FAIL | SUCCESS | OTHER"});
+    TrackerStorage.track({page:"/dashboard", err ,meta:{occured: new Date()}}, {name:"Error on fetch", type:"FAIL | SUCCESS | OTHER"});
 }
 `

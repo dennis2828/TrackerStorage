@@ -48,6 +48,7 @@ export default function Docs() {
           <p className="font-bold">4. Track whatever you want, it will be displayed on the dashboard</p>
           <SyntaxHighlighterPreview code={codeExample} />
         </div>
+        <p className="font-bold">You can also read about package <Link href="https://www.npmjs.com/" target="_blank" className="text-darkCyan"> here.</Link></p>
       </section>
       <Footer />
       </Container>
