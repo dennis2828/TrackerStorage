@@ -9,12 +9,15 @@ import SearchBar from "./components/SearchBar";
 import ChunkType from "./components/ChunkType";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { useAccountModal } from "@/hooks";
 
 export default async function Dashboard() {
 
     const session = await auth();
 
-    if (!session?.user) redirect("/");
+    if (!session?.user){
+        redirect("/?error=LoginRequired");
+    }
     const {user} = session;
 
     const dbUser = await db.user.findUnique({

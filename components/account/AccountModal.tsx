@@ -10,13 +10,16 @@ import {
 import CreateAccount from "./CreateAccount";
 import SignIn from "./SignIn";
 import { useState } from "react";
+import { useAccountModal } from "@/hooks";
 
 const AccountModal = () => {
   const [signUpForm, setSignUpForm] = useState<boolean>(false);
+  const {isOpen, setIsOpen} = useAccountModal();
+
 
   return (
     <>
-      <Dialog>
+      <Dialog open={isOpen} onOpenChange={open=>setIsOpen(open)}>
         <DialogTrigger className="text-white font-semibold hover:text-gray-300 duration-75">
           Login
         </DialogTrigger>
