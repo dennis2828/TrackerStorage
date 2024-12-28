@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
                 chunks: true,
             },
         });
-
+        
         if(!user) {
             return NextResponse.json({ ok: false, error: "No user was found. API KEY was deprecated." }, { status: 401 });
         }
@@ -55,5 +55,42 @@ export async function POST(req: NextRequest) {
         console.log(err);
 
         return NextResponse.json({ ok: false, error: "Something went wrong. Please try again later." }, { status: 400 });
+    }
+}
+
+export async function GET(req: NextRequest) {
+    try{
+        const authHeader = req.headers.get("Authorization");
+        if (!authHeader) {
+            return NextResponse.json({ ok: false, error: "No Authorization header found" }, { status: 401 });
+        }
+        
+        const apiKey = authHeader.split(" ")[1];
+        if (!apiKey) {
+            return NextResponse.json({ ok: false, error: "No API key found in Authorization header" }, { status: 401 });
+        }
+        
+        const user = await db.user.findUnique({
+            where: {
+              apiKey,
+            },
+            include:{
+                chunks: true,
+            },
+          }); 
+
+          if (!user) {
+            return NextResponse.json(
+              { ok: false, error: "No user was found. API KEY was deprecated." },
+              { status: 401 }
+            );
+          }
+
+          return NextResponse.json({ok: true, chunks: user.chunks});
+       
+    }catch(err){
+        console.log(err);
+
+        return NextResponse.json({ok: false, error: "Retrieving chunks data failed. Please try again later."}, {status: 400});
     }
 }

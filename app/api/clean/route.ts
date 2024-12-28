@@ -3,8 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
     try{
-        console.log("gh");
-        
         const cutoffDate = new Date();
             cutoffDate.setDate(cutoffDate.getDate() - 3);
 

@@ -26,7 +26,7 @@ const ChunkData = ({ chunk, apiKey }: ChunkDataProps) => {
 
   const { mutate: handleDelete, isPending } = useMutation({
     mutationFn: async (chunkId: string) => {
-      const res = await axios.delete(`/api/track/${chunkId}`, {
+      const res = await axios.delete(`/api/chunks/${chunkId}`, {
         headers: {
           Authorization: `Bearer ${apiKey}`,
         },
